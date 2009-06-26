@@ -13,8 +13,9 @@
   $Id: gettext.rb,v 1.46 2008/09/13 18:23:55 mutoh Exp $
 =end
 
-require 'rubygems'
-gem 'locale', '>=2.0.4' 
+# gettext should also work in the environment without rubygems
+begin; require 'rubygems'; rescue LoadError; end
+gem 'locale', '>=2.0.4' if respond_to? :gem, true
 
 require 'locale'
 raise "Install locale as gem or uninstall old gettext" unless Locale.respond_to? :candidates
